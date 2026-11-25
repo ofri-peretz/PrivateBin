@@ -1,9 +1,25 @@
 const globals = require('globals');
 const { globalIgnores } = require('eslint/config');
-const pluginSecurity = require('eslint-plugin-security');
+const { configs: secureCoding } = require('eslint-plugin-secure-coding');
+const { configs: nodeSecurity } = require('eslint-plugin-node-security');
+const { configs: browserSecurity } = require('eslint-plugin-browser-security');
 
 module.exports = [globalIgnores(["./*.*js", "!./privatebin.js"]),
-    pluginSecurity.configs.recommended,
+    secureCoding.recommended,
+    nodeSecurity.recommended,
+    browserSecurity.xss,
+    {
+    // not in the recommended preset: flags the prototype-pollution shape that #2139 fixed
+    rules: { "secure-coding/detect-object-injection": "error" }
+    },
+    {
+    // Mocha fixtures assign static markup to document.body.innerHTML by design.
+    files: ["test/**/*.js"],
+    rules: {
+        "secure-coding/no-improper-sanitization": "off",
+        "browser-security/no-innerhtml": "off"
+    }
+    },
     {
     languageOptions: {
         globals: {

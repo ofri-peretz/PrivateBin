@@ -18,7 +18,6 @@ describe('Model', function () {
                     keys = keys.map(PrivateBin.Helper.htmlEntities);
                     value = PrivateBin.Helper.htmlEntities(value);
                     // key is checked against the generated array length.
-                    // eslint-disable-next-line security/detect-object-injection
                     var content = keys.length > key ? keys[key] : keys[0],
                         contents = '<select id="pasteExpiration" name="pasteExpiration">';
                     keys.forEach(function(item) {
@@ -57,7 +56,6 @@ describe('Model', function () {
                     keys = keys.map(PrivateBin.Helper.htmlEntities);
                     value = PrivateBin.Helper.htmlEntities(value);
                     // key is checked against the generated array length.
-                    // eslint-disable-next-line security/detect-object-injection
                     var content = keys.length > key ? keys[key] : keys[0],
                         contents = '<select id="pasteFormatter" name="pasteFormatter">';
                     keys.forEach(function(item) {

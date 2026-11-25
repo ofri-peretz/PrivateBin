@@ -94,7 +94,6 @@ describe('Helper', function () {
                         clean = globalThis.cleanup(html);
                     ids.forEach(function(item, i) {
                         // i is bounded by the generated ids array; contents[0] is the fallback.
-                        // eslint-disable-next-line security/detect-object-injection
                         html += '<div id="' + item.join('') + '">' + PrivateBin.Helper.htmlEntities(contents[i] || contents[0]) + '</div>';
                     });
                     // TODO: As per https://github.com/tmpvar/jsdom/issues/321 there is no getSelection in jsdom, yet.
